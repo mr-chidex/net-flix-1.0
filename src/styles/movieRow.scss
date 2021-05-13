@@ -1,3 +1,5 @@
+@import "./variable";
+
 .movie-type {
   padding: 0 1rem;
   text-transform: capitalize;
@@ -44,5 +46,39 @@
       margin: 0.5rem 0;
       display: block;
     }
+  }
+}
+
+@keyframes default-cards {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.89;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.default-image {
+  display: flex;
+  height: 10rem;
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .default-card {
+    background-color: darken($red, 20%);
+    min-width: 15rem;
+    height: 10rem;
+    margin: 0.5rem;
+    animation-name: default-cards;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
   }
 }

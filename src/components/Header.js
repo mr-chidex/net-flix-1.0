@@ -1,19 +1,53 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+
+import axios from "../axios";
+import "../styles/header.scss";
+import { imageBaseUrl } from "../utils/api";
+import { getThriller } from "../utils/api";
 
 const Header = () => {
+  const [movie, setMovie] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const fetchaData = useCallback(async () => {
+    try {
+      const data = await axios.get(getThriller);
+
+      const movies = data.data.results;
+      const rand = Math.floor(Math.random() * movies.length);
+      setMovie(movies[rand]);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchaData();
+  }, [fetchaData]);
+
+  console.log(movie.backdrop_path);
+
   return (
-    <header>
-      <h1>Name of movie</h1>
-      <div className="header-button">
-        <button>Play</button>
-        <button>My List</button>
-      </div>
-      <p className="description">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. A utem
-        dolorem, eaque architecto nemo ullam perferendis iste commodi amet optio
-        at, quo tempore itaque, et odio! Dolorem consequuntur distinctio ducimus
-        mollitia!
-      </p>
+    <header
+      style={{
+        backgroundImage: `url(${imageBaseUrl}${movie.backdrop_path})`,
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      {!loading && (
+        <div className="header-content">
+          <h1>{movie.title}</h1>
+          <div className="header-button">
+            <button>Play</button>
+            <button>My List</button>
+          </div>
+
+          <p className="description">{movie.overview}</p>
+        </div>
+      )}
     </header>
   );
 };
