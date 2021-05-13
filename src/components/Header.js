@@ -4,6 +4,7 @@ import axios from "../axios";
 import "../styles/header.scss";
 import { imageBaseUrl } from "../utils/api";
 import { getThriller } from "../utils/api";
+import NavBAr from "./NavBar";
 
 const Header = () => {
   const [movie, setMovie] = useState({});
@@ -37,6 +38,7 @@ const Header = () => {
         backgroundSize: "cover",
       }}
     >
+      <NavBAr />
       {!loading && (
         <div className="header-content">
           <h1>{movie.title}</h1>

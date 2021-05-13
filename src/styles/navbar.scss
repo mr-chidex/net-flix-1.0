@@ -1,0 +1,44 @@
+@import "./variable";
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: #111;
+
+  @media (min-width: 760px) {
+    height: 6rem;
+  }
+
+  .image-container {
+    height: 4rem;
+
+    @media (min-width: 760px) {
+      height: 6rem;
+    }
+
+    img {
+      height: 100%;
+    }
+  }
+
+  button {
+    background-color: $red;
+    border: none;
+    outline: none;
+    color: $white;
+    display: block;
+    margin: auto 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 2px;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: darken($red, 10%);
+    }
+  }
+}
