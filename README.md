@@ -1,5 +1,11 @@
 # Dex-Flix
 
+A NETFLIX clone app with some little twick. Onclick, you can see movie trailer.
+
+## Development
+
+App developed with REACT JS and SASS
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
