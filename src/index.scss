@@ -1,3 +1,5 @@
+@import "./styles/variable";
+
 * {
   padding: 0;
   margin: 0;
@@ -12,9 +14,8 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000;
-  // color: #99ff99;
-  color: #fff;
+  background-color: $black;
+  color: $white;
 }
 
 code {
@@ -23,8 +24,9 @@ code {
 }
 
 .ruler {
+  margin: 3rem 0;
   height: 8px;
-  background-color: #222;
+  background-color: $primary;
   width: 100%;
   border: none;
 }
