@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MovieRow from "../components/MovieRow";
 
 import {
@@ -14,6 +14,10 @@ import {
 } from "../utils/api";
 
 const Home = () => {
+  useEffect(() => {
+    window.scroll(0, 0);
+  }, []);
+
   return (
     <>
       <main className="container">

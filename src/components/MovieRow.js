@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
+import YouTube from "react-youtube";
+import MovieTrailer from "movie-trailer";
+
 import axios from "../axios";
 import { imageBaseUrl } from "../utils/api";
 import "../styles/movieRow.scss";
@@ -7,6 +10,7 @@ const MovieRow = ({ url, type }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [trailerId, setTrailerId] = useState("");
 
   const defaultImage = 11;
 
@@ -15,7 +19,6 @@ const MovieRow = ({ url, type }) => {
       const data = await axios.get(url);
       setMovies(data.data.results);
       setLoading(false);
-      console.log(data);
     } catch (error) {
       setError(true);
     }
@@ -24,6 +27,29 @@ const MovieRow = ({ url, type }) => {
   useEffect(() => {
     fetchaData();
   }, [fetchaData]);
+
+  const opts = {
+    height: "390",
+    width: "100%",
+    playerVars: {
+      // https://developers.google.com/youtube/player_parameters
+      autoplay: 1,
+    },
+  };
+
+  const trailerHandler = async (movie) => {
+    try {
+      if (trailerId) {
+        setTrailerId("");
+      } else {
+        const url = await MovieTrailer(movie.title);
+        const trailerUrl = url ? url.split("=")[1] : "";
+        setTrailerId(trailerUrl);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -35,7 +61,10 @@ const MovieRow = ({ url, type }) => {
           <section className="movie-row">
             {movies.map((movie) => (
               <div key={movie.id} className="movie-container">
-                <div className="image-container">
+                <div
+                  className="image-container"
+                  onClick={() => trailerHandler(movie)}
+                >
                   <img
                     src={`${imageBaseUrl}${movie.backdrop_path}`}
                     alt={movie.title}
@@ -45,6 +74,7 @@ const MovieRow = ({ url, type }) => {
               </div>
             ))}
           </section>
+          {trailerId && <YouTube videoId={trailerId} opts={opts} />}
         </>
       )}
 

@@ -17,14 +17,14 @@ nav {
   transition: all 0.3s ease-in;
 
   @media (min-width: 760px) {
-    height: 6rem;
+    height: 4.5rem;
   }
 
   .image-container {
     height: 4rem;
 
     @media (min-width: 760px) {
-      height: 6rem;
+      height: 4.5rem;
     }
 
     img {
@@ -39,9 +39,10 @@ nav {
     color: $white;
     display: block;
     margin: auto 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.3rem 1rem;
     border-radius: 2px;
     font-size: 1rem;
+    cursor: pointer;
 
     &:hover {
       background-color: darken($red, 10%);
