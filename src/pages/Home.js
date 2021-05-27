@@ -6,10 +6,10 @@ import {
   getComedy,
   getAdventure,
   getAction,
-  getAnimation,
+  // getAnimation,
   getHorror,
-  getMusic,
-  getRomance,
+  // getMusic,
+  // getRomance,
   getScienceFiction,
 } from "../utils/api";
 
